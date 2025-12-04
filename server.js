@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 // serves ../public/app.html → http://localhost:3000/app.html
 
 // ------------- JSON PARSER -------------
-
+app.use(express.json());
 
 // ------------- MONGODB CONNECTION (NO USEUNIFIEDTOPOLOGY WARNING) -------------
 let db;
