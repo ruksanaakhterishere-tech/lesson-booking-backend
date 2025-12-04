@@ -84,7 +84,12 @@ app.put("/collection/:collectionName/:id", (req, res, next) => {
 });
 
 // DELETE DOCUMENT
-
+app.delete("/collection/:collectionName/:id", (req, res, next) => {
+  req.collection
+    .deleteOne({ _id: new ObjectId(req.params.id) })
+    .then(result => res.json(result))
+    .catch(err => next(err));
+});
 
 // -------------------- BACKEND SEARCH --------------------
 
