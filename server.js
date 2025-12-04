@@ -44,7 +44,13 @@ app.param("collectionName", (req, res, next, name) => {
 });
 
 // GET ALL DOCUMENTS
-
+app.get("/collection/:collectionName", (req, res, next) => {
+  req.collection
+    .find({})
+    .toArray()
+    .then(results => res.json(results))
+    .catch(err => next(err));
+});
 
 // GET SINGLE DOCUMENT
 
