@@ -61,7 +61,12 @@ app.get("/collection/:collectionName/:id", (req, res, next) => {
 });
 
 // INSERT DOCUMENT
-
+app.post("/collection/:collectionName", (req, res, next) => {
+  req.collection
+    .insertOne(req.body)
+    .then(result => res.json(result))
+    .catch(err => next(err));
+});
 
 // UPDATE DOCUMENT
 app.put("/collection/:collectionName/:id", (req, res, next) => {
