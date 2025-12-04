@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 });
 
 // ------------- STATIC FRONTEND ---------------
-
+app.use(express.static(path.join(__dirname, "../public")));
 // serves ../public/app.html → http://localhost:3000/app.html
 
 // ------------- JSON PARSER -------------
