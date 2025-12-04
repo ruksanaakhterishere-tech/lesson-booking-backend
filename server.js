@@ -53,7 +53,12 @@ app.get("/collection/:collectionName", (req, res, next) => {
 });
 
 // GET SINGLE DOCUMENT
-
+app.get("/collection/:collectionName/:id", (req, res, next) => {
+  req.collection
+    .findOne({ _id: new ObjectId(req.params.id) })
+    .then(result => res.json(result))
+    .catch(err => next(err));
+});
 
 // INSERT DOCUMENT
 
