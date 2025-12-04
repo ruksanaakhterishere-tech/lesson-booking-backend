@@ -5,7 +5,15 @@ const { MongoClient, ObjectId } = require("mongodb");
 const app = express();
 
 // ---------------- LOGGER ----------------
-
+app.use((req, res, next) => {
+  console.log("--------------------------------------------------");
+  console.log("New Request Received:");
+  console.log("Method:", req.method);
+  console.log("URL:", req.url);
+  console.log("Time:", new Date().toISOString());
+  console.log("--------------------------------------------------");
+  next();
+});
 
 // ------------- STATIC FRONTEND ---------------
 
