@@ -33,7 +33,9 @@ MongoClient.connect("mongodb+srv://ruksanaakhterishere_123:ruksana123@cluster0.1
   .catch(err => console.log("MongoDB Connection Error:", err));
 
 // ------------- BASE ROUTE -------------
-
+app.get("/", (req, res) => {
+  res.send("Backend is running. Go to /app.html");
+});
 
 // ------------- COLLECTION HANDLER -------------
 
