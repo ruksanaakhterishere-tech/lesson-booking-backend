@@ -178,6 +178,8 @@ app.put("/update-spaces", async (req, res) => {
   }
 });
 
+app.use("/images", express.static(path.join(__dirname, "images")));
+
 // ----------------- START SERVER -----------------
 app.listen(3000, () => {
   console.log("Server running on http://localhost:3000");
