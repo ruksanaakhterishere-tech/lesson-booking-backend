@@ -92,7 +92,38 @@ app.delete("/collection/:collectionName/:id", (req, res, next) => {
 });
 
 // -------------------- BACKEND SEARCH --------------------
+app.get("/search", async (req, res) => {
+  try {
+    const query = req.query.query || "";
 
+    if (!query.trim()) {
+      return res.json([]);
+    }
+
+    const regex = new RegExp(query, "i");
+    const num = Number(query);
+
+    const orConditions = [
+      { subject: regex },
+      { location: regex }
+    ];
+
+    if (!Number.isNaN(num)) {
+      orConditions.push({ price: num });
+      orConditions.push({ spaces: num });
+    }
+
+    const results = await db
+      .collection("products")
+      .find({ $or: orConditions })
+      .toArray();
+
+    res.json(results);
+  } catch (err) {
+    console.error("Search Error:", err);
+    res.status(500).json({ error: "Search failed" });
+  }
+});
 
 // ----------- PLACE ORDER -----------
 app.post("/placeorder", (req, res) => {
