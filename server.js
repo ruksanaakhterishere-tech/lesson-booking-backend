@@ -1,8 +1,11 @@
 const express = require("express");
 const path = require("path");
 const { MongoClient, ObjectId } = require("mongodb");
+const cors = require("cors");
 
 const app = express();
+
+app.use(cors());
 
 // ---------------- LOGGER ----------------
 app.use((req, res, next) => {
