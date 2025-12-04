@@ -38,7 +38,10 @@ app.get("/", (req, res) => {
 });
 
 // ------------- COLLECTION HANDLER -------------
-
+app.param("collectionName", (req, res, next, name) => {
+  req.collection = db.collection(name);
+  next();
+});
 
 // GET ALL DOCUMENTS
 
